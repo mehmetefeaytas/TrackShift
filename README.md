@@ -1,3 +1,134 @@
+# TrackShift - YouTube to Spotify Transfer Tool
+
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+![Python](https://img.shields.io/badge/python-3.8%2B-blue)
+
+TrackShift is a tool that lets you easily transfer your YouTube playlists to Spotify. It supports both YouTube Music playlists and regular YouTube playlists.
+
+*[Türkçe README için aşağı kaydırın](#trackshift---youtube---spotify-aktarım-aracı)*
+
+![Application Interface](./media/app_ui.png)
+
+## Features
+
+- 🎵 Transfer YouTube and YouTube Music playlists to Spotify
+- 🔒 Access to private YouTube playlists
+- 📊 Simple and user-friendly interface
+- 🏷️ Progress and status notifications
+- 🖼️ Automatic transfer of YouTube playlist cover to Spotify
+- 💫 Automatic creation of playlist description in Spotify
+- 📝 Logging for comprehensive debugging
+
+## Usage
+
+To use TrackShift:
+
+1. You need Python 3.8 or newer on your computer.
+2. Download or clone the project from GitHub.
+3. Install required packages: `pip install -r requirements.txt`
+4. Set up your Spotify and YouTube accounts (instructions below).
+5. Run the application: `python ytm2spt.py`
+
+## Setup
+
+### Spotify Account Settings
+
+1. Log in to [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
+2. Create a new application (Click on "Create An App" in the top right corner)
+   ![Spotify Create App](./media/spotify_create_app.png)
+3. Enter application name and description, accept terms of use
+4. Go to the settings page of the created application
+5. Click "Edit Settings" and add the following "Redirect URI": `http://127.0.0.1:8888/callback`
+   ![Spotify Settings](./media/spotify_settings.png)
+6. Note the Client ID and Client Secret
+   ![Spotify Credentials](./media/spotify_credentials.png)
+7. You can find your Spotify username from [your Spotify account page](https://www.spotify.com/account/overview/)
+   ![Spotify Username](./media/spotify_username.png)
+
+### YouTube Account Settings (For Private Playlists)
+
+If you want to access private playlists (likes, etc.), you need to authenticate with your YouTube account. There are two methods that you can access from "Settings > YouTube Account Settings" menu in the application:
+
+#### 1. Manual Cookie Method
+
+This method allows you to authenticate by copying YouTube cookies from your browser:
+
+1. Log in to YouTube in Chrome, Edge, or Firefox
+2. Press F12 to open developer tools
+3. Click on the "Application" tab
+4. Find the "Cookies" section on the left
+5. Select the "https://www.youtube.com" site
+6. Find and copy the following cookie values:
+   - `__Secure-3PSID`
+   - `__Secure-3PAPISID`
+   - `__Secure-3PSIDCC`
+7. Paste these values into the corresponding fields in the application and click "Save"
+
+![YouTube Interface](./media/youtube_ui.png)
+
+#### 2. OAuth Method (Recommended)
+
+This method provides a more secure authentication process:
+
+1. Click "Authenticate with YouTube OAuth" button in the application
+2. Log in with your Google account in the browser window that opens
+3. Approve the requested permissions
+4. The authentication process will be completed automatically
+
+Both methods securely store the credentials needed to access your private playlists locally.
+
+### Environment Variables
+
+Set the following environment variables before running TrackShift:
+
+```
+SPOTIFY_CLIENT_ID=your_client_id
+SPOTIFY_CLIENT_SECRET=your_client_secret
+SPOTIFY_USER_ID=your_spotify_username
+SPOTIFY_REDIRECT_URI=http://127.0.0.1:8888/callback
+```
+
+Windows users can fill in and run the `env.bat` file.
+
+## Supported Playlist Types
+
+- YouTube Music playlists (`https://music.youtube.com/playlist?list=...`)
+- Regular YouTube playlists (`https://youtube.com/playlist?list=...`)
+- YouTube Liked videos list (when "Private playlists" option is checked)
+- Playlists in your account using local YouTube Music API
+
+## Debugging
+
+If you encounter issues while running the application, check the generated log files:
+
+- YouTube API: `youtube.log`
+- Spotify API: `spotify.log`
+- General application: `trackshift.log`
+
+## Contributing
+
+1. Fork this repo
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## Original Project and Acknowledgements
+
+This project is derived from [abhishekmj303/ytm2spt](https://github.com/abhishekmj303/ytm2spt) and includes various improvements and bug fixes. Thanks to abhishekmj303 for the original work.
+
+## License
+
+This project is licensed under the GNU General Public License v3.0 (GPL-3.0). See the `LICENSE.md` file for more information.
+
+## Contact
+
+Mehmet Efe AYTAŞ - [GitHub](https://github.com/mehmetefeaytas)
+
+Project Link: [https://github.com/mehmetefeaytas/trackshift](https://github.com/mehmetefeaytas/trackshift)
+
+---
+
 # TrackShift - YouTube -> Spotify Aktarım Aracı
 
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
@@ -5,7 +136,9 @@
 
 TrackShift, YouTube çalma listelerinizi Spotify'a kolayca aktarmanızı sağlayan bir araçtır. Hem YouTube Music çalma listelerini hem de normal YouTube çalma listelerini destekler.
 
-![Uygulama Arayüzü](media/app_ui.png)
+*[Click for English README](#trackshift---youtube-to-spotify-transfer-tool)*
+
+![Uygulama Arayüzü](./media/app_ui.png)
 
 ## Özellikler
 
@@ -33,15 +166,15 @@ TrackShift'i kullanmak için:
 
 1. [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)'a giriş yapın
 2. Yeni bir uygulama oluşturun (Sağ üst köşedeki "Create An App" butonuna tıklayın)
-   ![Spotify Uygulama Oluşturma](media/spotify_create_app.png)
+   ![Spotify Uygulama Oluşturma](./media/spotify_create_app.png)
 3. Uygulama adını ve açıklamasını girin, kullanım şartlarını kabul edin
 4. Oluşturulan uygulamanın ayarlar sayfasına gidin 
 5. "Edit Settings" tıklayın ve şu "Redirect URI" adresini ekleyin: `http://127.0.0.1:8888/callback`
-   ![Spotify Ayarları](media/spotify_settings.png)
+   ![Spotify Ayarları](./media/spotify_settings.png)
 6. İstemci Kimliği (Client ID) ve İstemci Sırrını (Client Secret) not edin
-   ![Spotify Bilgileri](media/spotify_credentials.png)
+   ![Spotify Bilgileri](./media/spotify_credentials.png)
 7. Spotify kullanıcı adınızı [Spotify hesap sayfanızdan](https://www.spotify.com/account/overview/) bulabilirsiniz
-   ![Spotify Kullanıcı Adı](media/spotify_username.png)
+   ![Spotify Kullanıcı Adı](./media/spotify_username.png)
 
 ### YouTube Hesap Ayarları (Özel çalma listeleri için)
 
@@ -62,7 +195,7 @@ Bu yöntem, tarayıcınızdan YouTube çerezlerini kopyalayarak kimlik doğrulam
    - `__Secure-3PSIDCC`
 7. Bu değerleri uygulamadaki ilgili alanlara yapıştırın ve "Kaydet" düğmesine tıklayın
 
-![YouTube Arayüzü](media/youtube_ui.png)
+![YouTube Arayüzü](./media/youtube_ui.png)
 
 #### 2. OAuth Yöntemi (Tavsiye Edilen)
 
